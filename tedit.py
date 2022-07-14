@@ -24,7 +24,8 @@ class global_shit:
     done = False
     skip = False
     c = False
-    loops_complete = []
+    loops_complete = 0
+    loops_count = 0
 
 t_load.load(t, the_turtle, lvl_name, global_shit)
 

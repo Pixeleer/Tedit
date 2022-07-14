@@ -5,35 +5,35 @@ To create a level, just attach the commands together with a comma, and save as a
 
 Example: `penc:red,1:25,3:89,loop:loop`
 
-## 1
+## for
 
 Moves forward the specified amount.
 
-Example: `1:100`
+Example: `for:100`
 
 *In this example, the variable after is how many pixels to move.*
 
-## 2
+## bac
 
 Moves backwards the specified amount.
 
-Example: `2:50`
+Example: `bac:50`
 
 *In this example, the variable after is how many pixels to move.*
 
-## 3
+## r
 
 Turns right the specified amount.
 
-Example: `3:450`
+Example: `r:450`
 
 *In this example, the variable after is how many degrees to rotate.*
 
-## 4
+## l
 
 Turns left the specified amount.
 
-Example: `4:90`
+Example: `l:90`
 
 *In this example, the variable after is how many degrees to rotate.*
 

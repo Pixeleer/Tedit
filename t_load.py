@@ -31,8 +31,16 @@ class t_load:
 
                             pixels = str(num1)+";"+str(num2)
 
+                    if pixels == "randcol":
+                            col_list = ["blue", "red", "yellow", "green", "purple", "orange", "pink", "black", "white"]
+
+                            pixels = random.choice(col_list)
+
                     if direction == "loop":
                         global_shit.looping = True
+
+                    if direction == "bg":
+                        turtle.Screen().bgcolor(pixels)
 
                     if direction == "penc":
                         t.pencolor(pixels)
@@ -73,16 +81,16 @@ class t_load:
                     if direction == "endl":
                         global_shit.looping = False
 
-                    if direction == "1":
+                    if direction == "for":
                         t.forward(int(pixels))
 
-                    if direction == "2":
+                    if direction == "bac":
                         t.back(int(pixels))
 
-                    if direction == "3":
+                    if direction == "r":
                         t.right(int(pixels))
 
-                    if direction == "4":
+                    if direction == "l":
                         t.left(int(pixels))
 
 

@@ -4,6 +4,14 @@ import turtle
 import base64
 
 server = open("current_server.txt", "r").read()
+defualt_port = "36676"
+
+port_check = server.split(":")
+if len(port_check) == 1:
+    server = server+":"+defualt_port
+
+if server.startswith("http://") or server.startswith("https://") != True:
+    server = "http://"+server
 
 cmd = input("WIP Editor >> ")
 cmd_parts = cmd.split(" ")
