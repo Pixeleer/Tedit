@@ -4,4 +4,4 @@
 # Checklist:
 - [x] Server
 - [x] Macro Loading
-- [o] Macro Editor/Maker
+- [ ] Macro Editor/Maker
