@@ -28,7 +28,6 @@ class global_shit:
 
 t_load.load(t, the_turtle, lvl_name, global_shit)
 
-print(str(global_shit.looping))
 while global_shit.looping:
     t_load.load(t, the_turtle, lvl_name, global_shit)
     if not global_shit.looping:
