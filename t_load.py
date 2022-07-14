@@ -1,126 +1,96 @@
-from glob import glob
+import os
 import time
 import random
-import os
-import string
 
-lvl_name = input("Level name >> ")
+class t_load:
 
-if os.path.exists(lvl_name+".tlvl") != True:
-    print("Error: Level does not exist.")
-    os.system("pause")
-    exit()
+    def load(t, turtle, lvl_name, global_shit):
+        try:
+            with open(lvl_name+".tlvl", "r") as lvl:
+                c_sep = lvl.read().split(",")
 
-class global_shit:
-    times = 0
-    looping = False
-    done = False
-    skip = False
-    c = False
+                for item in c_sep:
+                    value = item.split(":")
 
-    loops_complete = []
+                    pixels, direction = value[1], value[0]
 
-import turtle
+                    if global_shit.c == True:
+                        if direction != "c":
+                            continue
+                        else:
+                            global_shit.c = False
 
-t = turtle.Turtle()
+                    if pixels == "random":
+                            num = random.randint(1, 400)
 
-def load():
-    try:
-        with open(lvl_name+".tlvl", "r") as lvl:
-            c_sep = lvl.read().split(",")
+                            pixels = str(num)
 
-            for item in c_sep:
-                value = item.split(":")
+                    if pixels == "randpos":
+                            num1 = random.randint(-640, 640)
+                            num2 = random.randint(-540, 540)
 
-                pixels, direction = value[1], value[0]
+                            pixels = str(num1)+";"+str(num2)
 
-                if global_shit.c == True:
-                    if direction != "c":
+                    if direction == "loop":
+                        global_shit.looping = True
+
+                    if direction == "penc":
+                        t.pencolor(pixels)
+
+                    if direction == "cls":
+                        t.clear()
+
+                    if direction == "spd":
+                        t.speed(int(pixels))
+
+                    if direction == "w":
+                        turtle.delay(int(pixels))
+
+                    if direction == "u":
+                        t.up()
+
+                    if direction == "d":
+                        t.down()
+
+                    if direction == "goto":
+                        splitting = pixels.split(";")
+
+                        x, y = splitting[0], splitting[1]
+
+                        t.goto(float(x), float(y))
+
+                    if direction == "wrd":
+                        t.write(pixels)
+
+                    if direction == "c":
+                        global_shit.looping = True
                         continue
-                    else:
-                        global_shit.c = False
 
-                if pixels == "random":
-                        num = random.randint(1, 400)
+                    if direction == "gtc":
+                        global_shit.c = True
+                        continue
 
-                        pixels = str(num)
+                    if direction == "endl":
+                        global_shit.looping = False
 
-                if pixels == "randpos":
-                        num1 = random.randint(-640, 640)
-                        num2 = random.randint(-540, 540)
+                    if direction == "1":
+                        t.forward(int(pixels))
 
-                        pixels = str(num1)+";"+str(num2)
+                    if direction == "2":
+                        t.back(int(pixels))
 
-                if direction == "loop":
-                    global_shit.looping = True
+                    if direction == "3":
+                        t.right(int(pixels))
 
-                if direction == "penc":
-                    t.pencolor(pixels)
+                    if direction == "4":
+                        t.left(int(pixels))
 
-                if direction == "cls":
-                    t.clear()
 
-                if direction == "spd":
-                    t.speed(int(pixels))
+        except Exception as e:
+            print("Error: Level data is corrupted.")
+            print("Traceback:\n"+str(e))
 
-                if direction == "w":
-                    turtle.delay(int(pixels))
+            global_shit.done = True
+            turtle.done()
 
-                if direction == "u":
-                    t.up()
-
-                if direction == "d":
-                    t.down()
-
-                if direction == "goto":
-                    splitting = pixels.split(";")
-
-                    x, y = splitting[0], splitting[1]
-
-                    t.goto(float(x), float(y))
-
-                if direction == "wrd":
-                    t.write(pixels)
-
-                if direction == "c":
-                    global_shit.looping = True
-                    continue
-
-                if direction == "gtc":
-                    global_shit.c = True
-                    continue
-
-                if direction == "endl":
-                    global_shit.looping = False
-
-                if direction == "1":
-                    t.forward(int(pixels))
-
-                if direction == "2":
-                    t.back(int(pixels))
-
-                if direction == "3":
-                    t.right(int(pixels))
-                    
-                if direction == "4":
-                    t.left(int(pixels))
-            
-
-    except Exception as e:
-        print("Error: Level data is corrupted.")
-        print("Traceback:\n"+str(e))
-        os.system("pause")
-                    
-load()
-
-while global_shit.looping:
-    load()
-    if not global_shit.looping:
-        break
-
-global_shit.done = True
-turtle.done()
-
-if global_shit.done == True:
-    os.system("pause")
-    exit()
+            os.system("pause")
